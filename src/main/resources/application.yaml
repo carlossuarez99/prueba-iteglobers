@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: prueba
+
+server:
+  port: 8080
+  servlet:
+    context-path: /prueba
+    encoding:
+      charset: UTF-8
+
+api:
+  external:
+    base-url: ${API_BASE_URL:https://jsonplaceholder.typicode.com/posts}
+    retry: ${API_RETRY:2}
