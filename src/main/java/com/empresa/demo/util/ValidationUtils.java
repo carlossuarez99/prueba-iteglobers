@@ -1,4 +1,4 @@
-package com.empresa.demo.controller.util;
+package com.empresa.demo.util;
 
 import com.empresa.demo.exeptions.DiscountCalculationException;
 

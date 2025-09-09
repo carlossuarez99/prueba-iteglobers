@@ -13,3 +13,4 @@ api:
   external:
     base-url: ${API_BASE_URL:https://jsonplaceholder.typicode.com/posts}
     retry: ${API_RETRY:2}
+    timeout : ${API_DELAY:2000}

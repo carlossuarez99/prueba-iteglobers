@@ -22,18 +22,21 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	//implementacion para los reintentos usando lib de spring boot
+	// Spring Retry
 	implementation 'org.springframework.retry:spring-retry:2.0.3'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
-	// Gestión de código rápido
+	// HttpClient para timeouts
+	implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// Gestión de logs
+	// Logging
 	implementation 'org.springframework.boot:spring-boot-starter-logging'
 
-	//jackson para mapeo de respuesta
+	// Jackson
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
 }

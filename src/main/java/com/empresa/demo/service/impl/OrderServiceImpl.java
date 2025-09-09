@@ -1,6 +1,6 @@
 package com.empresa.demo.service.impl;
 
-import com.empresa.demo.controller.util.ValidationUtils;
+import com.empresa.demo.util.ValidationUtils;
 import com.empresa.demo.exeptions.DiscountCalculationException;
 import com.empresa.demo.model.Order;
 import com.empresa.demo.service.OrderService;

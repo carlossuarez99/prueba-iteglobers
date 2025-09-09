@@ -160,5 +160,32 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 ```
+ ##  Consumo de una API externa
+En lugar de usar clases tradicionales para mapear la respuesta de la API, se utilizó un record de Java para representar los datos que se reciben. Los records son una forma sencilla y eficiente de trabajar con datos inmutables, y ayudan a mantener el código más limpio. Aquí se muestra cómo se mapea la respuesta de la API:
 
+```java
+public record ApiResponseDTO(
+@JsonProperty("userId") String userId,
+@JsonProperty("id") Integer id,
+@JsonProperty("title") String title,
+@JsonProperty("body") String body
+) { }
+```
 
+Manejo de Errores
+
+Se implementó un manejo de errores para asegurarnos de que la aplicación pueda responder adecuadamente en caso de fallos. Dependiendo del tipo de error, se maneja de distintas maneras:
+
+Timeout: Si la API externa no responde dentro del tiempo esperado, lanzamos una excepción de tipo TimeoutException con un mensaje claro.
+
+Errores del Cliente (4xx): Si la API devuelve un error como 400 Bad Request, lanzamos una excepción RestClientExeption indicando que la petición fue inválida.
+
+Errores del Servidor (5xx): Si la API devuelve un error como 500 Internal Server Error, se intenta un reintento. Si el error persiste, lanzamos un RestClientExeption.
+
+Reintentos Automáticos
+
+Utilizamos RetryTemplate para realizar reintentos en caso de que la API externa devuelva un error del servidor (código 5xx). Si la API sigue fallando después de varios intentos, se lanza una excepción para que el consumidor del servicio sepa que algo ha ido mal.
+
+Exposición del Endpoint
+
+El servicio tiene un endpoint REST que consume la API externa y devuelve los datos. Si la llamada tiene éxito, la respuesta contiene los datos mapeados desde la API externa:
